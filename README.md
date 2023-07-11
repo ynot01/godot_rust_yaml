@@ -2,6 +2,8 @@
 
 ### YAML GDExtension for [Godot 4.1](https://github.com/godotengine/godot)
 
+Does not support object serialization. Objects will be parsed as a string "<ClassName#InstanceID>"
+
 - Crates used:
   - [godot-rust/gdext](https://github.com/godot-rust/gdext)
   - [serde](https://github.com/serde-rs/serde)
