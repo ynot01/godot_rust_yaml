@@ -1,6 +1,6 @@
 # godot_rust_yaml
 
-### YAML GDExtension for Godot 4.1
+### YAML GDExtension for [Godot 4.1](https://github.com/godotengine/godot)
 
 - Crates used:
   - [godot-rust/gdext](https://github.com/godot-rust/gdext)
