@@ -14,7 +14,7 @@ impl YAML {
     #[func]
     fn parse(str: GodotString) -> Variant {
         let input: String = str.to_string();
-        let yaml_parse_result: Result<serde_json::Value, serde_yaml::Error> = serde_yaml::from_str(&input.replace("    ", "").replace("	", " "));
+        let yaml_parse_result: Result<serde_json::Value, serde_yaml::Error> = serde_yaml::from_str(&input.replace("	", "   "));
         let json_value = match yaml_parse_result {
             Ok(parsed) => parsed,
             Err(error) => return Variant::from(format!("Problem parsing the YAML: {:?}", error)),
@@ -27,7 +27,7 @@ impl YAML {
     fn to_string(input: Dictionary) -> GodotString {
         let json_string = Json::stringify(Variant::from(input));
         let input: String = json_string.to_string();
-        let json_parse_result: Result<serde_json::Value, serde_json::Error> = serde_json::from_str(&input.replace("    ", "").replace("	", " "));
+        let json_parse_result: Result<serde_json::Value, serde_json::Error> = serde_json::from_str(&input);
         let yaml_value = match json_parse_result {
             Ok(parsed) => parsed,
             Err(error) => return GodotString::from(format!("Problem parsing the dictionary: {:?}", error)),
