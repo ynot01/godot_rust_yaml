@@ -1,6 +1,6 @@
 # godot_rust_yaml
 
-### YAML GDExtension for [Godot 4.1](https://github.com/godotengine/godot)
+### YAML GDExtension for [Godot 4.x](https://github.com/godotengine/godot)
 
 Does not support object serialization. Objects will be parsed as a string "<ClassName#InstanceID>"
 
