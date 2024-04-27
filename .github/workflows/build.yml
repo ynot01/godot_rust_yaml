@@ -106,7 +106,7 @@ jobs:
           mkdir -v -p ~/.local/share/godot/export_templates/
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
       - name: Download Built Rust Binaries
-        uses: actions/downloads-artifact@v4
+        uses: actions/download-artifact@v4
         with:
           name: Godot-Rust-YAML Addon Export
       - name: Windows Godot Build
@@ -135,7 +135,7 @@ jobs:
           mkdir -v -p ~/.local/share/godot/export_templates/
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
       - name: Download Built Rust Binaries
-        uses: actions/downloads-artifact@v4
+        uses: actions/download-artifact@v4
         with:
           name: Godot-Rust-YAML Addon Export
       - name: Linux Godot Build
