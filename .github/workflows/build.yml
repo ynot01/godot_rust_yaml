@@ -56,7 +56,38 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: Addon Export
+        name: Addon Export (Windows/Linux)
+        path: export
+
+  build-rust-mac:
+    name: Build Rust Binaries (MacOS)
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build MacOS Debug
+      run: |
+        cd addons/godot_rust_yaml/rust
+        cargo build --verbose
+    - name: Build MacOS Release
+      run: |
+        cd addons/godot_rust_yaml/rust
+        cargo build --release --verbose
+    - name: Run Tests
+      run: |
+        cd addons/godot_rust_yaml/rust
+        cargo test --verbose
+    - name: Prepare Artifact
+      run: |
+        mkdir -v -p export/addons/godot_rust_yaml/macos/
+        mv addons/godot_rust_yaml/rust/target/debug/godot_rust_yaml.dylib export/addons/godot_rust_yaml/macos/godot_rust_yaml_debug.dylib
+        mv addons/godot_rust_yaml/rust/target/release/godot_rust_yaml.dylib export/addons/godot_rust_yaml/macos/godot_rust_yaml.dylib
+        cp export/addons/godot_rust_yaml/macos/godot_rust_yaml_debug.dylib export/addons/godot_rust_yaml/macos_arm/godot_rust_yaml_debug.dylib
+        cp export/addons/godot_rust_yaml/macos/godot_rust_yaml.dylib export/addons/godot_rust_yaml/macos_arm/godot_rust_yaml.dylib
+        mv gdextension.workflow export/addons/godot_rust_yaml/godot_rust_yaml.gdextension
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Addon Export (MacOS)
         path: export
 
   export-windows:
