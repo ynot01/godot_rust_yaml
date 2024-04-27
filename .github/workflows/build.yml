@@ -8,8 +8,8 @@ on:
 
 env:
   GODOT_VERSION: 4.2.2
-  EXPORT_NAME: test-project
-  PROJECT_PATH: test-project
+  EXPORT_NAME: godot-build
+  PROJECT_PATH: .
   CARGO_TERM_COLOR: always
 
 jobs:
