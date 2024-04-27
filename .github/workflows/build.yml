@@ -40,6 +40,9 @@ jobs:
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
+          cd addons/godot_rust_yaml/rust
+          cargo build --release --target x86_64-pc-windows-gnu
+          cd ../../../
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
@@ -65,6 +68,9 @@ jobs:
       - name: Linux Build
         run: |
           mkdir -v -p build/linux
+          cd addons/godot_rust_yaml/rust
+          cargo build --release --target x86_64-unknown-linux-gnu
+          cd ../../../
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Linux/X11" ../build/linux/$EXPORT_NAME.x86_64
       - name: Upload Artifact
@@ -90,6 +96,9 @@ jobs:
       - name: Web Build
         run: |
           mkdir -v -p build/web
+          cd addons/godot_rust_yaml/rust
+          cargo build --release --target wasm32-unknown-unknown
+          cd ../../../
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "HTML5" ../build/web/index.html
       - name: Upload Artifact
@@ -123,6 +132,9 @@ jobs:
       - name: Mac Build
         run: |
           mkdir -v -p build/mac
+          cd addons/godot_rust_yaml/rust
+          cargo build --release --target x86_64-apple-darwin
+          cd ../../../
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Mac OSX" ../build/mac/$EXPORT_NAME.zip
       - name: Upload Artifact
