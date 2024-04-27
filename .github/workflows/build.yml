@@ -79,7 +79,7 @@ jobs:
     - name: Prepare Artifact
       run: |
         brew install tree
-        tree
+        tree -L 6
         mkdir -v -p export/addons/godot_rust_yaml/macos/
         mv addons/godot_rust_yaml/rust/target/debug/godot_rust_yaml.dylib export/addons/godot_rust_yaml/macos/godot_rust_yaml_debug.dylib
         mv addons/godot_rust_yaml/rust/target/release/godot_rust_yaml.dylib export/addons/godot_rust_yaml/macos/godot_rust_yaml.dylib
