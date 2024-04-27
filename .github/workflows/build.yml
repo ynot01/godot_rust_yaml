@@ -15,14 +15,11 @@ env:
 jobs:
   build-rust-windows:
     name: Build Rust Binaries (Windows)
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
     - name: Setup
       run: |
-        sudo apt-get update
-        sudo apt-get install -y build-essential
-        sudo apt-get install -y mingw-w64
         rustup target add x86_64-pc-windows-gnu
     - name: Build Windows Debug
       run: |
@@ -53,12 +50,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Setup
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y build-essential
-        sudo apt-get install -y mingw-w64
-        rustup target add x86_64-pc-windows-gnu
     - name: Build Linux Debug
       run: |
         cd addons/godot_rust_yaml/rust
