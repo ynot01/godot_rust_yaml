@@ -127,7 +127,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Godot-Rust-YAML Windows Export
+          name: Godot-Rust-YAML Windows Test Export
           path: build/windows
 
   export-linux:
@@ -161,5 +161,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Godot-Rust-YAML Linux Export
+          name: Godot-Rust-YAML Linux Test Export
           path: build/linux
