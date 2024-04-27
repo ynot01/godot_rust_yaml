@@ -105,20 +105,10 @@ jobs:
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-      - name: Build Rust Binaries
-        run: |
-          cd addons/godot_rust_yaml/rust
-          apt-get update && apt install -y build-essential && apt-get install -y curl
-          apt-get install -y mingw-w64
-          curl https://sh.rustup.rs -sSf | sh -s -- -y
-          . "$HOME/.cargo/env"
-          cargo build
-          cargo build --release
-          rustup target add x86_64-pc-windows-gnu
-          cargo build --target x86_64-pc-windows-gnu
-          cargo build --target x86_64-pc-windows-gnu --release
-          cd ../../../
-          mv addons/godot_rust_yaml/rust/target/x86_64-pc-windows-gnu/release/godot_rust_yaml.dll addons/godot_rust_yaml/rust/target/release/godot_rust_yaml.dll
+      - name: Download Built Rust Binaries
+        uses: actions/downloads-artifact@v4
+        with:
+          name: Godot-Rust-YAML Addon Export
       - name: Windows Godot Build
         run: |
           mkdir -v -p build/windows
@@ -144,15 +134,10 @@ jobs:
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-      - name: Build Rust Binaries
-        run: |
-          cd addons/godot_rust_yaml/rust
-          apt-get update && apt install -y build-essential && apt-get install -y curl
-          curl https://sh.rustup.rs -sSf | sh -s -- -y
-          . "$HOME/.cargo/env"
-          cargo build
-          cargo build --release
-          cd ../../../
+      - name: Download Built Rust Binaries
+        uses: actions/downloads-artifact@v4
+        with:
+          name: Godot-Rust-YAML Addon Export
       - name: Linux Godot Build
         run: |
           mkdir -v -p build/linux
