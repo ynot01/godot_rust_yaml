@@ -41,10 +41,11 @@ jobs:
         run: |
           mkdir -v -p build/windows
           cd addons/godot_rust_yaml/rust
-          apt-get update && apt-get install -y curl
+          apt-get update && apt install -y build-essential && apt-get install -y curl
           curl https://sh.rustup.rs -sSf | sh -s -- -y
           . "$HOME/.cargo/env"
-          cargo build --release --target x86_64-pc-windows-gnu
+          cargo build --target x86_64-pc-windows-gnu
+          cargo build --target x86_64-pc-windows-gnu --release
           cd ../../../
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
@@ -75,7 +76,8 @@ jobs:
           apt-get update && apt install -y build-essential && apt-get install -y curl
           curl https://sh.rustup.rs -sSf | sh -s -- -y
           . "$HOME/.cargo/env"
-          cargo build --release --target x86_64-unknown-linux-gnu
+          cargo build --target x86_64-unknown-linux-gnu
+          cargo build --target x86_64-unknown-linux-gnu --release
           cd ../../../
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Linux/X11" ../build/linux/$EXPORT_NAME.x86_64
@@ -103,10 +105,11 @@ jobs:
         run: |
           mkdir -v -p build/web
           cd addons/godot_rust_yaml/rust
-          apt-get update && apt-get install -y curl
+          apt-get update && apt install -y build-essential && apt-get install -y curl
           curl https://sh.rustup.rs -sSf | sh -s -- -y
           . "$HOME/.cargo/env"
-          cargo build --release --target wasm32-unknown-unknown
+          cargo build --release wasm32-unknown-unknown
+          cargo build --release wasm32-unknown-unknown --target
           cd ../../../
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "HTML5" ../build/web/index.html
@@ -142,10 +145,11 @@ jobs:
         run: |
           mkdir -v -p build/mac
           cd addons/godot_rust_yaml/rust
-          apt-get update && apt-get install -y curl
+          apt-get update && apt install -y build-essential && apt-get install -y curl
           curl https://sh.rustup.rs -sSf | sh -s -- -y
           . "$HOME/.cargo/env"
-          cargo build --release --target x86_64-apple-darwin
+          cargo build --release x86_64-apple-darwin
+          cargo build --release x86_64-apple-darwin --target
           cd ../../../
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Mac OSX" ../build/mac/$EXPORT_NAME.zip
