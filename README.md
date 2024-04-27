@@ -10,6 +10,10 @@ Does not support object serialization. Objects will be parsed as a string "<Clas
   - [serde-yaml](https://github.com/dtolnay/serde-yaml)
   - [serde-json](https://github.com/serde-rs/json)
 
+# Downloads
+
+[Downloads are at releases](https://github.com/ynot01/godot_rust_yaml/releases)
+
 # Usage
 
 **Currently only pre-built windows builds are available, other platforms see [Compiling](#Compiling)**
