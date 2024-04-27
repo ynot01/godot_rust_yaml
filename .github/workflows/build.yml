@@ -41,7 +41,7 @@ jobs:
         run: |
           mkdir -v -p build/windows
           cd addons/godot_rust_yaml/rust
-          apt-get update && apt-get install -y cargo && apt-get install -y rustc
+          curl https://sh.rustup.rs -sSf | sh -s -- -y
           cargo build --release --target x86_64-pc-windows-gnu
           cd ../../../
           cd $PROJECT_PATH
@@ -70,7 +70,7 @@ jobs:
         run: |
           mkdir -v -p build/linux
           cd addons/godot_rust_yaml/rust
-          apt-get update && apt-get install -y cargo && apt-get install -y rustc
+          curl https://sh.rustup.rs -sSf | sh -s -- -y
           cargo build --release --target x86_64-unknown-linux-gnu
           cd ../../../
           cd $PROJECT_PATH
@@ -99,7 +99,7 @@ jobs:
         run: |
           mkdir -v -p build/web
           cd addons/godot_rust_yaml/rust
-          apt-get update && apt-get install -y cargo && apt-get install -y rustc
+          curl https://sh.rustup.rs -sSf | sh -s -- -y
           cargo build --release --target wasm32-unknown-unknown
           cd ../../../
           cd $PROJECT_PATH
@@ -136,7 +136,7 @@ jobs:
         run: |
           mkdir -v -p build/mac
           cd addons/godot_rust_yaml/rust
-          apt-get update && apt-get install -y cargo && apt-get install -y rustc
+          curl https://sh.rustup.rs -sSf | sh -s -- -y
           cargo build --release --target x86_64-apple-darwin
           cd ../../../
           cd $PROJECT_PATH
