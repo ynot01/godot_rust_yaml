@@ -45,9 +45,8 @@ jobs:
           apt-get install -y mingw-w64
           curl https://sh.rustup.rs -sSf | sh -s -- -y
           . "$HOME/.cargo/env"
-          rustup target add x86_64-pc-windows-gnu
-          cargo build --target x86_64-pc-windows-gnu
-          cargo build --target x86_64-pc-windows-gnu --release
+          cargo build
+          cargo build--release
           cd ../../../
           apt-get install -y tree
           tree
@@ -80,9 +79,8 @@ jobs:
           apt-get update && apt install -y build-essential && apt-get install -y curl
           curl https://sh.rustup.rs -sSf | sh -s -- -y
           . "$HOME/.cargo/env"
-          rustup target add x86_64-unknown-linux-gnu
-          cargo build --target x86_64-unknown-linux-gnu
-          cargo build --target x86_64-unknown-linux-gnu --release
+          cargo build
+          cargo build --release
           cd ../../../
           apt-get install -y tree
           tree
