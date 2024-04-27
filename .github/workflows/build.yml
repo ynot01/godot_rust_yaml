@@ -24,7 +24,7 @@ jobs:
       run: cd addons/godot_rust_yaml/rust && cargo test --verbose
 
   export-windows:
-    name: Windows Export
+    name: Windows Godot Export
     runs-on: ubuntu-20.04
     container:
       image: barichello/godot-ci:4.2.2
@@ -56,7 +56,7 @@ jobs:
           path: build/windows
 
   export-linux:
-    name: Linux Export
+    name: Linux Godot Export
     runs-on: ubuntu-20.04
     container:
       image: barichello/godot-ci:4.2.2
@@ -88,7 +88,7 @@ jobs:
           path: build/linux
 
   export-web:
-    name: Web Export
+    name: Web Godot Export
     runs-on: ubuntu-20.04
     container:
       image: barichello/godot-ci:4.2.2
@@ -108,8 +108,8 @@ jobs:
           apt-get update && apt install -y build-essential && apt-get install -y curl
           curl https://sh.rustup.rs -sSf | sh -s -- -y
           . "$HOME/.cargo/env"
-          cargo build --release wasm32-unknown-unknown
-          cargo build --release wasm32-unknown-unknown --target
+          cargo build --target wasm32-unknown-unknown
+          cargo build --target wasm32-unknown-unknown --release
           cd ../../../
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "HTML5" ../build/web/index.html
@@ -128,7 +128,7 @@ jobs:
           folder: build/web # The folder the action should deploy.
 
   export-mac:
-    name: Mac Export
+    name: Mac Godot Export
     runs-on: ubuntu-20.04
     container:
       image: barichello/godot-ci:4.2.2
@@ -148,8 +148,8 @@ jobs:
           apt-get update && apt install -y build-essential && apt-get install -y curl
           curl https://sh.rustup.rs -sSf | sh -s -- -y
           . "$HOME/.cargo/env"
-          cargo build --release x86_64-apple-darwin
-          cargo build --release x86_64-apple-darwin --target
+          cargo build --target x86_64-apple-darwin
+          cargo build --target x86_64-apple-darwin --release
           cd ../../../
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Mac OSX" ../build/mac/$EXPORT_NAME.zip
