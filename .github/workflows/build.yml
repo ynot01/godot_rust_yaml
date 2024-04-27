@@ -37,13 +37,11 @@ jobs:
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-      - name: Install rustc
-        run: |
-          apt-get update && apt-get install -y rustc
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
           cd addons/godot_rust_yaml/rust
+          apt-get update && apt-get install -y rustc
           cargo build --release --target x86_64-pc-windows-gnu
           cd ../../../
           cd $PROJECT_PATH
@@ -68,13 +66,11 @@ jobs:
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-      - name: Install rustc
-        run: |
-          apt-get update && apt-get install -y rustc
       - name: Linux Build
         run: |
           mkdir -v -p build/linux
           cd addons/godot_rust_yaml/rust
+          apt-get update && apt-get install -y rustc
           cargo build --release --target x86_64-unknown-linux-gnu
           cd ../../../
           cd $PROJECT_PATH
@@ -99,13 +95,11 @@ jobs:
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-      - name: Install rustc
-        run: |
-          apt-get update && apt-get install -y rustc
       - name: Web Build
         run: |
           mkdir -v -p build/web
           cd addons/godot_rust_yaml/rust
+          apt-get update && apt-get install -y rustc
           cargo build --release --target wasm32-unknown-unknown
           cd ../../../
           cd $PROJECT_PATH
@@ -138,14 +132,11 @@ jobs:
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-      - name: Install rustc
-        run: |
-          apt-get update && apt-get install -y rustc
       - name: Mac Build
         run: |
           mkdir -v -p build/mac
           cd addons/godot_rust_yaml/rust
-
+          apt-get update && apt-get install -y rustc
           cargo build --release --target x86_64-apple-darwin
           cd ../../../
           cd $PROJECT_PATH
