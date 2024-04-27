@@ -18,16 +18,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Build
+    - name: Setup
+      run: |
+        apt-get update
+        apt-get install -y build-essential
+        apt-get install -y mingw-w64
+        rustup target add x86_64-pc-windows-gnu
+    - name: Build Linux Binaries
       run: |
         cd addons/godot_rust_yaml/rust
         cargo build --verbose
         cargo build --release --verbose
-        rustup target add x86_64-pc-windows-gnu
+    - name: Build Windows Binaries
+      run: |
+        cd addons/godot_rust_yaml/rust
         cargo build --target x86_64-pc-windows-gnu
         cargo build --target x86_64-pc-windows-gnu --release
     - name: Run Tests
-      run: cd addons/godot_rust_yaml/rust && cargo test --verbose
+      run: |
+        cd addons/godot_rust_yaml/rust
+        cargo test --verbose
     - name: Prepare Artifact
       run: |
         mv addons/godot_rust_yaml/rust/target/debug/godot_rust_yaml.so export/addons/godot_rust_yaml/linux/godot_rust_yaml_debug.so
