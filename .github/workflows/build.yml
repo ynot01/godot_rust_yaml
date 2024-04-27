@@ -52,8 +52,6 @@ jobs:
           cargo build --target x86_64-pc-windows-gnu --release
           cd ../../../
           mv addons/godot_rust_yaml/rust/target/x86_64-pc-windows-gnu/release/godot_rust_yaml.dll addons/godot_rust_yaml/rust/target/release/godot_rust_yaml.dll
-          apt-get install -y tree
-          tree
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
@@ -86,8 +84,6 @@ jobs:
           cargo build
           cargo build --release
           cd ../../../
-          apt-get install -y tree
-          tree
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Linux/X11" ./build/linux/$EXPORT_NAME.x86_64
       - name: Upload Artifact
