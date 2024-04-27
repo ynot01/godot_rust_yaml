@@ -72,7 +72,7 @@ jobs:
         run: |
           mkdir -v -p build/linux
           cd addons/godot_rust_yaml/rust
-          apt-get update && apt-get install -y curl
+          apt-get update && apt install -y build-essential && apt-get install -y curl
           curl https://sh.rustup.rs -sSf | sh -s -- -y
           . "$HOME/.cargo/env"
           cargo build --release --target x86_64-unknown-linux-gnu
