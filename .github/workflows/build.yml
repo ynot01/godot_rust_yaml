@@ -78,14 +78,12 @@ jobs:
         cargo test --verbose
     - name: Prepare Artifact
       run: |
-        brew install tree
-        tree -L 6
         mkdir -v -p export/addons/godot_rust_yaml/macos/
-        mv addons/godot_rust_yaml/rust/target/debug/godot_rust_yaml.dylib export/addons/godot_rust_yaml/macos/godot_rust_yaml_debug.dylib
-        mv addons/godot_rust_yaml/rust/target/release/godot_rust_yaml.dylib export/addons/godot_rust_yaml/macos/godot_rust_yaml.dylib
+        mv addons/godot_rust_yaml/rust/target/debug/libgodot_rust_yaml.dylib export/addons/godot_rust_yaml/macos/libgodot_rust_yaml_debug.dylib
+        mv addons/godot_rust_yaml/rust/target/release/libgodot_rust_yaml.dylib export/addons/godot_rust_yaml/macos/libgodot_rust_yaml.dylib
         mkdir -v -p export/addons/godot_rust_yaml/macos_arm/
-        cp export/addons/godot_rust_yaml/macos/godot_rust_yaml_debug.dylib export/addons/godot_rust_yaml/macos_arm/godot_rust_yaml_debug.dylib
-        cp export/addons/godot_rust_yaml/macos/godot_rust_yaml.dylib export/addons/godot_rust_yaml/macos_arm/godot_rust_yaml.dylib
+        cp export/addons/godot_rust_yaml/macos/libgodot_rust_yaml_debug.dylib export/addons/godot_rust_yaml/macos_arm/libgodot_rust_yaml_debug.dylib
+        cp export/addons/godot_rust_yaml/macos/libgodot_rust_yaml.dylib export/addons/godot_rust_yaml/macos_arm/libgodot_rust_yaml.dylib
         mv gdextension.workflow export/addons/godot_rust_yaml/godot_rust_yaml.gdextension
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
