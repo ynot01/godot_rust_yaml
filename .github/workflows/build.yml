@@ -42,7 +42,7 @@ jobs:
           mkdir -v -p build/windows
           cd addons/godot_rust_yaml/rust
           apt-get update && apt install -y build-essential && apt-get install -y curl
-          apt-get install mingw-w64
+          apt-get install -y mingw-w64
           curl https://sh.rustup.rs -sSf | sh -s -- -y
           . "$HOME/.cargo/env"
           rustup target add x86_64-pc-windows-gnu
