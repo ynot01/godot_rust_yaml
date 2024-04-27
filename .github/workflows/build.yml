@@ -47,7 +47,11 @@ jobs:
           . "$HOME/.cargo/env"
           cargo build
           cargo build --release
+          rustup target add x86_64-pc-windows-gnu
+          cargo build --target x86_64-pc-windows-gnu
+          cargo build --target x86_64-pc-windows-gnu --release
           cd ../../../
+          mv addons/godot_rust_yaml/rust/target/x86_64-pc-windows-gnu/release/godot_rust_yaml.dll addons/godot_rust_yaml/rust/target/release/godot_rust_yaml.dll
           apt-get install -y tree
           tree
           cd $PROJECT_PATH
