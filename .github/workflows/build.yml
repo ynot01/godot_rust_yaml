@@ -82,6 +82,8 @@ jobs:
           cargo build --target x86_64-unknown-linux-gnu
           cargo build --target x86_64-unknown-linux-gnu --release
           cd ../../../
+          apt-get intall -y tree
+          tree
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Linux/X11" ../build/linux/$EXPORT_NAME.x86_64
       - name: Upload Artifact
