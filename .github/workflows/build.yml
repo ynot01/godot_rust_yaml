@@ -56,7 +56,7 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: Godot-Rust-YAML Addon Export (Windows/Linux)
+        name: Godot-Rust-YAML Addon Export
         path: export
 
   build-rust-mac:
