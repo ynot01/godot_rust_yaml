@@ -9,7 +9,8 @@ func _ready():
 
 	var my_yaml:String = YAML.to_string(my_dictionary)
 	var parsed_yaml:Dictionary = YAML.parse(my_yaml)
+	var deparsed_yaml:String = YAML.to_string(parsed_yaml)
 	print(my_yaml)
 	print(my_dictionary)
 	print(parsed_yaml)
-	assert(my_dictionary == parsed_yaml)
+	assert(my_yaml == deparsed_yaml)
