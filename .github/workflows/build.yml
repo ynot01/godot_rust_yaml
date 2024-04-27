@@ -93,6 +93,7 @@ jobs:
 
   export-windows:
     name: Windows Godot Export
+    needs: build-rust
     runs-on: ubuntu-20.04
     container:
       image: barichello/godot-ci:4.2.2
@@ -122,6 +123,7 @@ jobs:
 
   export-linux:
     name: Linux Godot Export
+    needs: build-rust
     runs-on: ubuntu-20.04
     container:
       image: barichello/godot-ci:4.2.2
