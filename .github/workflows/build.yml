@@ -43,6 +43,7 @@ jobs:
           cd addons/godot_rust_yaml/rust
           apt-get update && apt-get install -y curl
           curl https://sh.rustup.rs -sSf | sh -s -- -y
+          . "$HOME/.cargo/env"
           cargo build --release --target x86_64-pc-windows-gnu
           cd ../../../
           cd $PROJECT_PATH
@@ -73,6 +74,7 @@ jobs:
           cd addons/godot_rust_yaml/rust
           apt-get update && apt-get install -y curl
           curl https://sh.rustup.rs -sSf | sh -s -- -y
+          . "$HOME/.cargo/env"
           cargo build --release --target x86_64-unknown-linux-gnu
           cd ../../../
           cd $PROJECT_PATH
@@ -103,6 +105,7 @@ jobs:
           cd addons/godot_rust_yaml/rust
           apt-get update && apt-get install -y curl
           curl https://sh.rustup.rs -sSf | sh -s -- -y
+          . "$HOME/.cargo/env"
           cargo build --release --target wasm32-unknown-unknown
           cd ../../../
           cd $PROJECT_PATH
@@ -141,6 +144,7 @@ jobs:
           cd addons/godot_rust_yaml/rust
           apt-get update && apt-get install -y curl
           curl https://sh.rustup.rs -sSf | sh -s -- -y
+          . "$HOME/.cargo/env"
           cargo build --release --target x86_64-apple-darwin
           cd ../../../
           cd $PROJECT_PATH
