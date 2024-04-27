@@ -42,6 +42,7 @@ jobs:
           mkdir -v -p build/windows
           cd addons/godot_rust_yaml/rust
           apt-get update && apt install -y build-essential && apt-get install -y curl
+          apt-get install mingw-w64
           curl https://sh.rustup.rs -sSf | sh -s -- -y
           . "$HOME/.cargo/env"
           rustup target add x86_64-pc-windows-gnu
@@ -110,9 +111,11 @@ jobs:
           apt-get update && apt install -y build-essential && apt-get install -y curl
           curl https://sh.rustup.rs -sSf | sh -s -- -y
           . "$HOME/.cargo/env"
-          rustup target add wasm32-unknown-unknown
-          cargo build --target wasm32-unknown-unknown
-          cargo build --target wasm32-unknown-unknown --release
+          rustup toolchain install nightly
+          rustup component add rust-src --toolchain nightly
+          rustup target add wasm32-unknown-emscripten --toolchain nightly
+          cargo build --target wasm32-unknown-emscripten
+          cargo build --target wasm32-unknown-emscripten --release
           cd ../../../
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "HTML5" ../build/web/index.html
@@ -129,36 +132,3 @@ jobs:
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: build/web # The folder the action should deploy.
-
-  export-mac:
-    name: Mac Godot Export
-    runs-on: ubuntu-20.04
-    container:
-      image: barichello/godot-ci:4.2.2
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          lfs: true
-      - name: Setup
-        run: |
-          mkdir -v -p ~/.local/share/godot/export_templates/
-          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-      - name: Mac Build
-        run: |
-          mkdir -v -p build/mac
-          cd addons/godot_rust_yaml/rust
-          apt-get update && apt install -y build-essential && apt-get install -y curl
-          curl https://sh.rustup.rs -sSf | sh -s -- -y
-          . "$HOME/.cargo/env"
-          rustup target add x86_64-apple-darwin
-          cargo build --target x86_64-apple-darwin
-          cargo build --target x86_64-apple-darwin --release
-          cd ../../../
-          cd $PROJECT_PATH
-          godot --headless --verbose --export-release "Mac OSX" ../build/mac/$EXPORT_NAME.zip
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: mac
-          path: build/mac
