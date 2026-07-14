@@ -1,3 +1,8 @@
+> [!CAUTION]
+> This repository is archived
+>
+> I recommend using https://github.com/fimbul-works/godot-yaml which is actively maintained as of writing (Unaffiliated)
+
 # godot_rust_yaml
 
 ### YAML GDExtension for [Godot 4.x](https://github.com/godotengine/godot)
